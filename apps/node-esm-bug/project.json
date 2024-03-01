@@ -11,7 +11,7 @@
       "options": {
         "platform": "node",
         "outputPath": "dist/apps/node-esm-bug",
-        "format": ["cjs"],
+        "format": ["esm"],
         "bundle": false,
         "main": "apps/node-esm-bug/src/main.ts",
         "tsConfig": "apps/node-esm-bug/tsconfig.app.json",
