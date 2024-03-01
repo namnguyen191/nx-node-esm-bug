@@ -1,0 +1,56 @@
+{
+  "name": "node-esm-bug",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/node-esm-bug/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/node-esm-bug",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/node-esm-bug/src/main.ts",
+        "tsConfig": "apps/node-esm-bug/tsconfig.app.json",
+        "assets": ["apps/node-esm-bug/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "node-esm-bug:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "node-esm-bug:build:development"
+        },
+        "production": {
+          "buildTarget": "node-esm-bug:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
